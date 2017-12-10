@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rhymebyrhymeversion2.NewPoemActivity"
+    android:background="#FFFFFF">
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:textCursorDrawable="@drawable/new_poem_edittext"
+        android:inputType="textNoSuggestions"
+        android:backgroundTint="#222222"
+        android:hint="Введите название..."
+        android:textColor="#A9A9A9"
+        android:textSize="25sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:id="@+id/editTextTitle" />
+    
+    
+    
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="270dp"
+        android:textCursorDrawable="@drawable/new_poem_edittext"
+        android:gravity="start"
+        android:hint="Введите текст..."
+        android:paddingLeft="4dp"
+        android:textColor="#A9A9A9"
+        android:background="@null"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/editTextTitle"
+        android:layout_alignLeft="@+id/editTextTitle"
+        android:layout_alignStart="@+id/editTextTitle"
+        android:id="@+id/editTextPoem" />
+
+
+    <EditText
+        android:id="@+id/editTextTags"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions"
+        android:hint="Ваши хештеги..."
+        android:paddingLeft="4dp"
+        android:textColor="#A9A9A9"
+        android:backgroundTint="#222222"
+        android:textCursorDrawable="@drawable/new_poem_edittext"
+        android:layout_below="@+id/editTextPoem"
+        android:layout_alignLeft="@+id/editTextPoem"
+        android:layout_alignStart="@+id/editTextPoem"
+
+        android:layout_marginTop="42dp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#000000">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/new_pub_close_image"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/close"/>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/new_pub_toolbar_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Новая публикация"
+        android:textSize="25sp"
+        android:textColor="#FFFFFF" />
+
+    <ImageView
+        android:id="@+id/new_pub_accept_image"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/checked"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

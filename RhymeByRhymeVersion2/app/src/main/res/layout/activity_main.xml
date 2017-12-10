@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context="com.example.rhymebyrhymeversion2.MainLogActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_items_height"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/login_shape"
+        android:layout_marginTop="194dp"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/user"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <EditText
+            android:id="@+id/editTextLog"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#FFFFFF"
+            android:textCursorDrawable = "@null"
+            android:textColor="@android:color/darker_gray"
+            android:hint="Логин"
+            android:paddingLeft="10dp"
+            android:textSize="25dp"
+             />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_items_height"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/login_shape"
+        android:layout_marginTop="17dp"
+        android:layout_marginRight="15dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:id="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/imageViewPas"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/lock"
+            android:layout_marginTop="5dp"
+            />
+
+
+        <EditText
+            android:id="@+id/editTextPas"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="#FFFFFF"
+            android:textCursorDrawable = "@null"
+            android:inputType="textPassword"
+            android:textColor="@android:color/darker_gray"
+            android:hint="Пароль"
+            android:paddingLeft="10dp"
+            android:textSize="25dp"
+            />
+    </LinearLayout>
+
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple2"
+        app:mrl_rippleOverlay="true"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        app:mrl_rippleColor="#FFFFFF"
+        android:layout_height="@dimen/login_items_height"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:background="#000000">
+
+        <TextView
+            android:id="@+id/textButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Войти"
+            android:textSize="25dp"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+
+            />
+
+
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+    <TextView
+        android:id="@+id/registration_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="20sp"
+        android:text="Впервые здесь? Регистрация!"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/forget_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Забыли пароль?"
+        android:layout_below="@+id/ripple2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/vkLog"
+        android:text="Авторизация через VK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="67dp"
+        android:textSize="20sp"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/name"
+        android:text="Рифма за рифмой"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:layout_above="@+id/vkLog"
+        android:layout_centerHorizontal="true" />
+
+
+
+
+
+</RelativeLayout>

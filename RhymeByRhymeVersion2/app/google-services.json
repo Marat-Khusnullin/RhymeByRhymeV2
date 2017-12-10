@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "764017116161",
+    "firebase_url": "https://rhymebyrhyme.firebaseio.com",
+    "project_id": "rhymebyrhyme",
+    "storage_bucket": "rhymebyrhyme.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764017116161:android:523ebd941212bacb",
+        "android_client_info": {
+          "package_name": "com.example.rhymebyrhyme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764017116161-mp3grlg1h48b715bia7t7adl7ko6hqdp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rhymebyrhyme",
+            "certificate_hash": "9fd22d3111649ebaa99e915225accc62ca8e4106"
+          }
+        },
+        {
+          "client_id": "764017116161-ve99ntelvl62behmquubt6q4n977mdak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rhymebyrhyme",
+            "certificate_hash": "34de42fcde2493e8e236a95162a98f3ce6c7762e"
+          }
+        },
+        {
+          "client_id": "764017116161-7uc9o7m96lpqodp0bv9j9mo4o59ddn6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ20zdsnGXf8E7OvM8UntVUkINuovQtrE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764017116161-7uc9o7m96lpqodp0bv9j9mo4o59ddn6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764017116161:android:df48a4bce057d123",
+        "android_client_info": {
+          "package_name": "com.example.rhymebyrhymeversion2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764017116161-q0qsc005jliq41nj1k7rf5maer8lfao7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rhymebyrhymeversion2",
+            "certificate_hash": "34de42fcde2493e8e236a95162a98f3ce6c7762e"
+          }
+        },
+        {
+          "client_id": "764017116161-7uc9o7m96lpqodp0bv9j9mo4o59ddn6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJ20zdsnGXf8E7OvM8UntVUkINuovQtrE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764017116161-7uc9o7m96lpqodp0bv9j9mo4o59ddn6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
