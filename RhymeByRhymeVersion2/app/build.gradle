@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.example.rhymebyrhymeversion2"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -35,11 +35,14 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:10.0.1'
     compile 'com.google.firebase:firebase-database:10.0.1'
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.firebaseui:firebase-ui:0.6.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.firebase:firebase-storage:10.0.1'
     testCompile 'junit:junit:4.12'
 }
+
 
 
 

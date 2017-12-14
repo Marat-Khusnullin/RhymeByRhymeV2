@@ -3,18 +3,14 @@ package com.example.rhymebyrhymeversion2;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,8 +25,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class MainProfileActivity extends AppCompatActivity  {
     Toolbar toolbar;
@@ -58,8 +52,6 @@ public class MainProfileActivity extends AppCompatActivity  {
         getSupportActionBar().setCustomView(R.layout.main_profile_action_bar);
         ((Toolbar)getSupportActionBar().getCustomView().getParent()).setContentInsetsAbsolute(0,0);
 
-
-
         mRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
@@ -73,8 +65,6 @@ public class MainProfileActivity extends AppCompatActivity  {
         subsriptions = (TextView) findViewById(R.id.subscriptions);
         newPublication = (TextView) findViewById(R.id.newPub);
         name = (TextView) findViewById(R.id.name);
-
-
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +83,7 @@ public class MainProfileActivity extends AppCompatActivity  {
         });
 
         setUserInfo();
-
-
-
-
-
-
     }
-
-
-
 
     private void setUserInfo() {
 

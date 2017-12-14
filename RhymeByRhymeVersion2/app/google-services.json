@@ -67,6 +67,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "764017116161-lvrh611mhqe57qo4a18e0vij8lv6cmql.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rhymebyrhymeversion2",
+            "certificate_hash": "9fd22d3111649ebaa99e915225accc62ca8e4106"
+          }
+        },
+        {
           "client_id": "764017116161-q0qsc005jliq41nj1k7rf5maer8lfao7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

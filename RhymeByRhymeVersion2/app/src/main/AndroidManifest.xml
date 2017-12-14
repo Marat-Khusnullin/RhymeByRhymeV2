@@ -22,9 +22,9 @@
         <activity android:name=".MainLogActivity" />
         <activity android:name=".MainProfileActivity" />
         <activity android:name=".RegistrationActivity" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".NewPoemActivity" />
-        <activity android:name=".NewUserInfoActivity"></activity>
+        <activity android:name=".NewUserInfoActivity" />
+        <activity android:name=".ChatActivity"></activity>
     </application>
 
 </manifest>
