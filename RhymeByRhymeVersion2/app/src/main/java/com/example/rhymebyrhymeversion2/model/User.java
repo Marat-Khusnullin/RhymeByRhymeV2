@@ -1,4 +1,4 @@
-package com.example.rhymebyrhymeversion2;
+package com.example.rhymebyrhymeversion2.model;
 
 
 import java.util.ArrayList;
