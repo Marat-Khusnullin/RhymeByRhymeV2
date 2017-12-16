@@ -9,7 +9,7 @@
     android:layout_marginTop="60dp"
     android:orientation="vertical">
     <TextView
-        android:id="@+id/news"
+        android:id="@+id/news_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:text="НОВОСТИ"/>
     <TextView
-        android:id="@+id/top_authors"
+        android:id="@+id/top_authors_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:text="ТОП АВТОРОВ"/>
     <TextView
-        android:id="@+id/messages"
+        android:id="@+id/messages_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="СООБЩЕНИЯ"/>
     <TextView
-        android:id="@+id/liked_posts"
+        android:id="@+id/liked_posts_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="ПОНРАВИВШИЕСЯ"/>
     <TextView
-        android:id="@+id/notifications"
+        android:id="@+id/notifications_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:text="УВЕДОМЛЕНИЯ"/>
     <TextView
-        android:id="@+id/settings"
+        android:id="@+id/settings_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:text="НАСТРОЙКИ"/>
     <TextView
-        android:id="@+id/exit_account"
+        android:id="@+id/exit_account_menu"
         android:textAlignment="center"
         android:layout_margin="10dp"
         android:textSize="30dp"
