@@ -21,9 +21,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <color name="translucent_gray_color">#D3D3D3</color>
-    <style name="TranslucentGray" parent="android:Theme.Translucent">
+    <color name="translucent_gray_color">#d0000000</color>
+    <style name="TranslucentGray" parent="android:Theme">
         <item name="android:windowBackground">@color/translucent_gray_color</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
