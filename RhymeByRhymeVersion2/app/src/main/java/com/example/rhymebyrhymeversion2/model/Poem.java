@@ -10,17 +10,17 @@ public class Poem implements Serializable {
     private String title;
     private String text;
     private int likes;
-    private int id;
+    private String id;
     private String uId;
     private String date;
     private boolean like;
     private String tags;
+    private String author;
 
 
 
 
-
-    public Poem(String uId, int id, String title, String text, int likes, String date, String tags) {
+    public Poem(String uId, String id, String title, String text, int likes, String date, String tags, String author) {
         this.uId = uId;
         this.id = id;
         this.title = title;
@@ -28,6 +28,7 @@ public class Poem implements Serializable {
         this.likes = likes;
         this.date = date;
         this.tags = tags;
+        this.author = author;
 
 
     }
@@ -43,11 +44,11 @@ public class Poem implements Serializable {
     public Poem() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,5 +90,21 @@ public class Poem implements Serializable {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }

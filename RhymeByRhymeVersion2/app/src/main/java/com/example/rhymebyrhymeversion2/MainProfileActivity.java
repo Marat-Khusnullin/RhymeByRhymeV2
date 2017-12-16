@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,7 +14,10 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.rhymebyrhymeversion2.adapter.PoemsListAdapter;
+import com.example.rhymebyrhymeversion2.model.Poem;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +32,8 @@ import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.LinkedList;
 
 public class MainProfileActivity extends AppCompatActivity  {
     Toolbar toolbar;
@@ -46,6 +52,8 @@ public class MainProfileActivity extends AppCompatActivity  {
     private String country = "";
     private ProgressBar progressBar;
     private RelativeLayout mainLayout;
+    private LinkedList<Poem> poems;
+    PoemsListAdapter adapter;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
@@ -74,6 +82,7 @@ public class MainProfileActivity extends AppCompatActivity  {
         name = (TextView) findViewById(R.id.name_main);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mainLayout = (RelativeLayout) this.findViewById(R.id.main_layout);
+
         /*mainLayout.setVisibility(RelativeLayout.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);*/
 
@@ -92,6 +101,7 @@ public class MainProfileActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainProfileActivity.this, NewPoemActivity.class);
+                intent.putExtra("name", name.getText().toString());
                 startActivity(intent);
             }
         });
@@ -105,6 +115,7 @@ public class MainProfileActivity extends AppCompatActivity  {
         });
 
         setUserInfo();
+        //setPoems();
     }
 
     private void setUserInfo() {
@@ -128,11 +139,15 @@ public class MainProfileActivity extends AppCompatActivity  {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
+                    adapter = new PoemsListAdapter(poems, context);
+                    adapter.setPath(path);
+                    setPoems();
                 Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage, new Callback() {
                     @Override
                     public void onSuccess() {
                         /*progressBar.setVisibility(ProgressBar.GONE);
                         mainLayout.setVisibility(RelativeLayout.VISIBLE);*/
+
                     }
 
                     @Override
@@ -167,6 +182,36 @@ public class MainProfileActivity extends AppCompatActivity  {
                         .resize(200,200).centerCrop().into(mBackgroundImage);
             }
         });
+
+    }
+
+
+    private void setPoems() {
+        poems = new LinkedList();
+        DatabaseReference mRef;
+
+        mRef = FirebaseDatabase.getInstance().getReference();
+        mRef.child("users").child(mAuth.getCurrentUser().getUid()).child("poems").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Poem poem = postSnapshot.getValue(Poem.class);
+                    poems.add(poem);
+                }
+                adapter.setList(poems);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+                mRecyclerView.setAdapter(adapter);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
     }
 

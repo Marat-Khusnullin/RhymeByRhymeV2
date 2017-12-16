@@ -1,6 +1,7 @@
 package com.example.rhymebyrhymeversion2;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class NewPoemActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -72,17 +74,26 @@ public class NewPoemActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         int id =  Integer.parseInt("" + dataSnapshot.child("poemCount").getValue());
-
                         String newTitle = title.getText().toString();
                         if(newTitle.equals("")) newTitle = "Без названия";
-                        mRef.child("poems").child(firebaseUser.getUid()).child(""+ id).setValue(new Poem(firebaseUser.getUid(),
-                                Integer.parseInt(""+ dataSnapshot.child("poemCount").getValue())
+                        String uniqueID = UUID.randomUUID().toString();
+                        mRef.child("users").child(firebaseUser.getUid()).child("poems").child(uniqueID).setValue(new Poem(firebaseUser.getUid(),
+                                uniqueID
                                 ,newTitle,
-                                Html.toHtml(poem.getText()),0,""+ DateFormat.format("dd.MM.yyyy",new Date()), tags.getText().toString()));
+                                Html.toHtml(poem.getText()),0,""+ DateFormat.format("dd.MM.yyyy",new Date()), tags.getText().toString(),
+                                getIntent().getStringExtra("name")));
+                        mRef = FirebaseDatabase.getInstance().getReference();
+                        mRef.child("poems").child(uniqueID).setValue(new Poem(firebaseUser.getUid(),
+                                uniqueID
+                                ,newTitle,
+                                Html.toHtml(poem.getText()),0,""+ DateFormat.format("dd.MM.yyyy",new Date()), tags.getText().toString(),
+                                getIntent().getStringExtra("name")));
                         mRef = FirebaseDatabase.getInstance().getReference();
                         mRef.child("users").child(firebaseUser.getUid()).child("poemCount").setValue(++id);
-
                         Toast.makeText(NewPoemActivity.this, "ПУБЛИКАЦИЯ ПРОШЛА", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(NewPoemActivity.this, MainProfileActivity.class);
+                        startActivity(intent);
+
                         finish();
                     }
 

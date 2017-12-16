@@ -115,7 +115,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     /*intent.putExtra("Reference", mAuth.getCurrentUser().getUid());
                     startActivity(intent);*/
                 } else {
-                    //Toast.makeText(this,"" + task.getException(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "" + task.getException(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -125,7 +125,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void saveUser() {
         mAuth.signInWithEmailAndPassword(login.getText().toString(), password.getText().toString());
         FirebaseUser firebaseUser = mAuth.getCurrentUser();
-        writeUser(firebaseUser.getUid(), "Не указано", "Не указано","Не указано", 0 ,"Не указано","Не указано");
+        writeUser(firebaseUser.getUid(), "Не указано", "Не указано",login.getText().toString(), 0 ,"Не указано","Не указано");
         mRef = FirebaseDatabase.getInstance().getReference();
     }
 
