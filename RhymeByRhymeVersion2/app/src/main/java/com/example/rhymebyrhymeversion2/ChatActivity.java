@@ -36,14 +36,10 @@ public class ChatActivity extends AppCompatActivity {
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
                 mRef.child("chat/" + currentUser.getUid() + "/" + anotherUserID).push().setValue(new ChatMessage(input.getText().toString(),
-                                FirebaseAuth.getInstance()
-                                        .getCurrentUser()
-                                        .getDisplayName())
+                                FirebaseAuth.getInstance().getCurrentUser().getUid(), anotherUserID)
                 );
                 mRef.child("chat/" + anotherUserID + "/" + currentUser.getUid()).push().setValue(new ChatMessage(input.getText().toString(),
-                        FirebaseAuth.getInstance()
-                                .getCurrentUser()
-                                .getDisplayName())
+                                FirebaseAuth.getInstance().getCurrentUser().getUid(), anotherUserID)
                 );
                 input.setText("");
             }
@@ -59,7 +55,7 @@ public class ChatActivity extends AppCompatActivity {
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
                 messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
+                messageUser.setText(model.getWhoSend());
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
                         model.getMessageTime()));
             }

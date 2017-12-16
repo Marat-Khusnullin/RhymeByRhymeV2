@@ -9,13 +9,15 @@ import java.util.Date;
 public class ChatMessage {
 
     private String messageText;
-    private String messageUser;
+    private String whoSend;
+    private String toWhomSend;
     private long messageTime;
 
-    public ChatMessage(String messageText, String messageUser) {
+    public ChatMessage(String messageText, String whoSend, String toWhomSend) {
         this.messageText = messageText;
-        this.messageUser = messageUser;
-        messageTime = new Date().getTime();
+        this.whoSend = whoSend;
+        this.toWhomSend = toWhomSend;
+        this.messageTime = new Date().getTime();
     }
 
     public ChatMessage(){
@@ -30,12 +32,20 @@ public class ChatMessage {
         this.messageText = messageText;
     }
 
-    public String getMessageUser() {
-        return messageUser;
+    public String getWhoSend() {
+        return whoSend;
     }
 
-    public void setMessageUser(String messageUser) {
-        this.messageUser = messageUser;
+    public void setWhoSend(String whoSend) {
+        this.whoSend = whoSend;
+    }
+
+    public String getToWhomSend() {
+        return toWhomSend;
+    }
+
+    public void setToWhomSend(String toWhomSend) {
+        this.toWhomSend = toWhomSend;
     }
 
     public long getMessageTime() {
