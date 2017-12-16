@@ -122,7 +122,7 @@ public class MainLogActivity extends AppCompatActivity implements SignInterface 
 
 
     public void sign(String email, String password) {
-        mAuth.signInWithEmailAndPassword("klevanso55@mail.ru", "12345678q").addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
