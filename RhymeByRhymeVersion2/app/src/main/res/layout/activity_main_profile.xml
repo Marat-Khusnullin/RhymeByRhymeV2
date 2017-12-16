@@ -5,7 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.rhymebyrhymeversion2.MainProfileActivity"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    >
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_layout">
+
+
+
+
+
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -141,6 +160,9 @@
         android:layout_below="@+id/material_below_view">
 
     </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>

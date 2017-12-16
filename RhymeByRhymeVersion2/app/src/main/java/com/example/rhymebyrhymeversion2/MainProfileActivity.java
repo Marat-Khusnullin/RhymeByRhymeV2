@@ -10,7 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class MainProfileActivity extends AppCompatActivity  {
@@ -39,6 +43,10 @@ public class MainProfileActivity extends AppCompatActivity  {
     private Context context = this;
     private ImageView edit;
     private ImageView menu;
+    private String surname = "";
+    private String country = "";
+    private ProgressBar progressBar;
+    private RelativeLayout mainLayout;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mRef;
@@ -64,12 +72,19 @@ public class MainProfileActivity extends AppCompatActivity  {
         subscribers = (TextView) findViewById(R.id.subscribers);
         subsriptions = (TextView) findViewById(R.id.subscriptions);
         newPublication = (TextView) findViewById(R.id.newPub);
-        name = (TextView) findViewById(R.id.name);
+        name = (TextView) findViewById(R.id.name_main);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mainLayout = (RelativeLayout) this.findViewById(R.id.main_layout);
+        /*mainLayout.setVisibility(RelativeLayout.GONE);
+        progressBar.setVisibility(ProgressBar.VISIBLE);*/
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainProfileActivity.this, NewUserInfoActivity.class);
+                intent.putExtra("name", name.getText().toString());
+                intent.putExtra("surname",surname);
+                intent.putExtra("country", country);
                 startActivity(intent);
             }
         });
@@ -86,7 +101,6 @@ public class MainProfileActivity extends AppCompatActivity  {
     }
 
     private void setUserInfo() {
-
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -94,6 +108,8 @@ public class MainProfileActivity extends AppCompatActivity  {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 publications.setText(dataSnapshot.child("poemCount").getValue() + "\n публикации");
                 name.setText(""+ dataSnapshot.child("name").getValue());
+                surname = "" + dataSnapshot.child("surname").getValue();
+                country = "" + dataSnapshot.child("country").getValue();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -105,7 +121,20 @@ public class MainProfileActivity extends AppCompatActivity  {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
-                Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage);
+                Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        /*progressBar.setVisibility(ProgressBar.GONE);
+                        mainLayout.setVisibility(RelativeLayout.VISIBLE);*/
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -120,7 +149,8 @@ public class MainProfileActivity extends AppCompatActivity  {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
-                Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage);
+                Picasso.with(context).load(path).resize(200,200).centerCrop().into(mBackgroundImage);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -130,6 +160,7 @@ public class MainProfileActivity extends AppCompatActivity  {
                         .resize(200,200).centerCrop().into(mBackgroundImage);
             }
         });
+
     }
 
 
