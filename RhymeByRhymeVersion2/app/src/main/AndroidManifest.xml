@@ -29,7 +29,11 @@
         <activity android:name=".NewPoemActivity" />
         <activity android:name=".NewUserInfoActivity" />
         <activity android:name=".ChatActivity" />
-        <activity android:name=".MenuActivity" android:theme="@style/TranslucentGray" />
+        <activity
+            android:name=".MenuActivity"
+            android:theme="@style/TranslucentGray" />
+        <activity android:name=".MessagesActivity" />
+        <activity android:name=".UserProfileActivity"></activity>
     </application>
 
 </manifest>

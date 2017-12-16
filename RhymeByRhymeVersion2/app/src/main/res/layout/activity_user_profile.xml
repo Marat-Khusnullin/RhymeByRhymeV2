@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rhymebyrhymeversion2.MainProfileActivity"
+    android:background="#FFFFFF"
+    >
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_layout_user"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout2_user"
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/background_image_user"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image_user"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:civ_border_color="#000000"
+                app:civ_border_width="2dp" />
+
+            <ImageView
+                android:src="@drawable/ic_mail_outline_black_24dp"
+                android:id="@+id/send_message_user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@+id/profile_image_user"
+                android:layout_alignLeft="@+id/subscribe_user"
+                android:layout_alignStart="@+id/subscribe_user" />
+
+            <ImageView
+                android:src="@drawable/ic_arrow_forward_black_24dp"
+                android:id="@+id/subscribe_user"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignTop="@+id/profile_image_user"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="24dp"
+                android:layout_marginEnd="24dp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_profile_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/relativeLayout2_user">
+
+            <TextView
+                android:id="@+id/publication_user"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:lines="2"
+                android:maxLines="2" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"
+
+                />
+
+            <TextView
+                android:id="@+id/subscribers_user"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:lines="2"
+                android:maxLines="2" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"
+
+                />
+
+            <TextView
+                android:id="@+id/subscriptions_user"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:lines="2"
+                android:maxLines="2" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/linear_below_view_user"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/linear_profile_user"
+            android:background="#000000" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/poems_recycler_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_below_view_user"
+            android:layout_alignParentBottom="true">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="18dp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/my_profile_image_message"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp"
+        android:layout_alignTop="@+id/last_message_text2"
+        android:layout_alignLeft="@+id/last_message_human2"
+        android:layout_alignStart="@+id/last_message_human2"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/profile_image2"
+        android:layout_toRightOf="@+id/profile_image2"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#000"
+        android:textSize="20dp"
+        android:id="@+id/last_message_human2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/last_message_text2"
+        android:layout_width="100dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/last_message_human2"
+        android:textColor="#7e7e7e"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/profile_image2"
+        android:layout_toRightOf="@+id/my_profile_image_message"
+        android:layout_toEndOf="@+id/my_profile_image_message" />
+</RelativeLayout>
