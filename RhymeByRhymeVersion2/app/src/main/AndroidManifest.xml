@@ -24,7 +24,8 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".NewPoemActivity" />
         <activity android:name=".NewUserInfoActivity" />
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".MenuActivity" android:theme="@style/TranslucentGray" />
     </application>
 
 </manifest>
