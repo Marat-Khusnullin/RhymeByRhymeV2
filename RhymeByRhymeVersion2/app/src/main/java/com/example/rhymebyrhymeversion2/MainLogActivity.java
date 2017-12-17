@@ -126,11 +126,11 @@ public class MainLogActivity extends AppCompatActivity implements SignInterface 
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
-                    if(mAuth.getCurrentUser().isEmailVerified()) {
+                    //if(mAuth.getCurrentUser().isEmailVerified()) {
                         Intent intent = new Intent(MainLogActivity.this, MainProfileActivity.class);
                         startActivity(intent);
                         closeActivity();
-                    }
+                    //}
                 } else {
                     Toast.makeText(MainLogActivity.this, "23123", Toast.LENGTH_SHORT).show();
                 }
