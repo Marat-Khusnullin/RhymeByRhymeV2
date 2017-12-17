@@ -46,15 +46,27 @@ public class MessagesActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.list_of_messages_rv);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
-
         mRef.child("chat/" + mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final long personNumber = dataSnapshot.getChildrenCount();
+                final long[] i = {0};
                 for (DataSnapshot eachPerson: dataSnapshot.getChildren()){
-                    eachPerson.getRef().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
+                    eachPerson
+                            .getRef()
+                            .limitToLast(1)
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            chatMessageArrayList.add(dataSnapshot.getValue(ChatMessage.class));
+                            for (DataSnapshot eachMessage: dataSnapshot.getChildren()){
+                                chatMessageArrayList.add(eachMessage.getValue(ChatMessage.class));
+                            }
+                            i[0]++;
+                            if (i[0] == personNumber){
+                                MessagesListAdapter mAdapter = new MessagesListAdapter(chatMessageArrayList, MessagesActivity.this);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
+                                recyclerView.setAdapter(mAdapter);
+                            }
                         }
 
                         @Override
@@ -63,10 +75,6 @@ public class MessagesActivity extends AppCompatActivity {
                         }
                     });
                 }
-
-                MessagesListAdapter mAdapter = new MessagesListAdapter(chatMessageArrayList, MessagesActivity.this);
-                recyclerView.setLayoutManager(new LinearLayoutManager(recyclerView.getContext()));
-                recyclerView.setAdapter(mAdapter);
             }
 
             @Override
@@ -114,7 +122,7 @@ public class MessagesActivity extends AppCompatActivity {
             mRef = FirebaseDatabase.getInstance().getReference();
             if (holder instanceof MessageListLastNotMineViewHolder){
                 final MessageListLastNotMineViewHolder mHolder = (MessageListLastNotMineViewHolder) holder;
-                mRef.child("users").child(message.getToWhomSend()).addListenerForSingleValueEvent(new ValueEventListener() {
+                mRef.child("users").child(message.getWhoSend()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         mHolder.personName.setText(dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("surname").getValue().toString());
@@ -219,10 +227,10 @@ public class MessagesActivity extends AppCompatActivity {
             public MessageListLastMineViewHolder(View itemView) {
                 super(itemView);
                 view = itemView;
-                personAvatar = (CircleImageView) findViewById(R.id.profile_image2);
-                myAvatar = (CircleImageView) findViewById(R.id.my_profile_image_message);
-                personName = (TextView) findViewById(R.id.last_message_human2);
-                messageText = (TextView) findViewById(R.id.last_message_text2);
+                personAvatar = (CircleImageView) itemView.findViewById(R.id.profile_image2);
+                myAvatar = (CircleImageView) itemView.findViewById(R.id.my_profile_image_message);
+                personName = (TextView) itemView.findViewById(R.id.last_message_human2);
+                messageText = (TextView) itemView.findViewById(R.id.last_message_text2);
             }
         }
 
@@ -235,9 +243,9 @@ public class MessagesActivity extends AppCompatActivity {
             public MessageListLastNotMineViewHolder(View itemView) {
                 super(itemView);
                 view = itemView;
-                personAvatar = (CircleImageView) findViewById(R.id.profile_image);
-                personName = (TextView) findViewById(R.id.last_message_human);
-                messageText = (TextView) findViewById(R.id.last_message_text);
+                personAvatar = (CircleImageView) itemView.findViewById(R.id.profile_image);
+                personName = (TextView) itemView.findViewById(R.id.last_message_human);
+                messageText = (TextView) itemView.findViewById(R.id.last_message_text);
             }
         }
     }

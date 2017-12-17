@@ -33,6 +33,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText) findViewById(R.id.input);
+
                 DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
                 mRef.child("chat/" + currentUser.getUid() + "/" + anotherUserID).push().setValue(new ChatMessage(input.getText().toString(),

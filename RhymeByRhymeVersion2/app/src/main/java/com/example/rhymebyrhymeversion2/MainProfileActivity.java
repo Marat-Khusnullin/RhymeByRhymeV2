@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rhymebyrhymeversion2.adapter.PoemsListAdapter;
 import com.example.rhymebyrhymeversion2.model.Poem;
