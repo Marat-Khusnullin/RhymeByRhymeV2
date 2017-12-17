@@ -43,7 +43,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView menu;
     private String surname = "";
     private String country = "";
-    String userID = getIntent().getStringExtra("userID");
+    String userID;
     private ProgressBar progressBar;
     private RelativeLayout mainLayout;
 
@@ -74,6 +74,7 @@ public class UserProfileActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.name_main_user);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_user);
         mainLayout = (RelativeLayout) this.findViewById(R.id.main_layout_user);
+        userID = getIntent().getStringExtra("userID");
         /*mainLayout.setVisibility(RelativeLayout.GONE);
         progressBar.setVisibility(ProgressBar.VISIBLE);*/
 

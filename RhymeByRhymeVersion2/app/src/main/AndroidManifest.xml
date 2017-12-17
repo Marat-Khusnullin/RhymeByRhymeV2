@@ -28,12 +28,15 @@
         <activity android:name=".RegistrationActivity" />
         <activity android:name=".NewPoemActivity" />
         <activity android:name=".NewUserInfoActivity" />
-        <activity android:name=".ChatActivity" android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".MenuActivity"
             android:theme="@style/TranslucentGray" />
         <activity android:name=".MessagesActivity" />
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".TopAuthorsActivity"></activity>
     </application>
 
 </manifest>
