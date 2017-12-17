@@ -153,7 +153,7 @@ public class MessagesActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Intent intent = new Intent(MessagesActivity.this, ChatActivity.class);
-                        intent.putExtra("userID", message.getToWhomSend());
+                        intent.putExtra("userID", message.getWhoSend());
                         startActivity(intent);
                     }
                 });

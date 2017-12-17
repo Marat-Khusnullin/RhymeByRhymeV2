@@ -36,5 +36,13 @@ public class MenuActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        topAuthors.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, TopAuthorsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

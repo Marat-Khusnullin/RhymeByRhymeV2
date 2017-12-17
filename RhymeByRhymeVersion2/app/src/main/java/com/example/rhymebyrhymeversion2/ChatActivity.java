@@ -13,8 +13,11 @@ import com.example.rhymebyrhymeversion2.model.ChatMessage;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -28,13 +31,13 @@ public class ChatActivity extends AppCompatActivity {
         final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         final String anotherUserID = getIntent().getStringExtra("userID");
 
+        final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText input = (EditText) findViewById(R.id.input);
-
-                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
 
                 mRef.child("chat/" + currentUser.getUid() + "/" + anotherUserID).push().setValue(new ChatMessage(input.getText().toString(),
                                 FirebaseAuth.getInstance().getCurrentUser().getUid(), anotherUserID)
@@ -50,13 +53,23 @@ public class ChatActivity extends AppCompatActivity {
 
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class, R.layout.message, FirebaseDatabase.getInstance().getReference().child("chat/" + currentUser.getUid() + "/" + anotherUserID)) {
             @Override
-            protected void populateView(View v, ChatMessage model, int position) {
+            protected void populateView(View v, final ChatMessage model, int position) {
                 TextView messageText = (TextView) v.findViewById(R.id.message_text);
-                TextView messageUser = (TextView) v.findViewById(R.id.message_user);
+                final TextView messageUser = (TextView) v.findViewById(R.id.message_user);
                 TextView messageTime = (TextView) v.findViewById(R.id.message_time);
 
                 messageText.setText(model.getMessageText());
-                messageUser.setText(model.getWhoSend());
+                mRef.child("users").child(model.getWhoSend()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        messageUser.setText(dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("surname").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
                         model.getMessageTime()));
             }
