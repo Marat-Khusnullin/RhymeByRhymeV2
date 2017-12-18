@@ -1,11 +1,14 @@
 package com.example.rhymebyrhymeversion2;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,16 +25,45 @@ import com.google.firebase.database.ValueEventListener;
 public class ChatActivity extends AppCompatActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
+    Toolbar toolbar;
+    TextView titleText;
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        toolbar = (Toolbar) findViewById(R.id.chat_toolbar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.chat_action_bar);
+        ((Toolbar)getSupportActionBar().getCustomView().getParent()).setContentInsetsAbsolute(0,0);
+        titleText = (TextView) findViewById(R.id.chat_toolbar_text);
+        backButton = (ImageView) findViewById(R.id.chat_close_image);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         final String anotherUserID = getIntent().getStringExtra("userID");
-
         final DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+        final String[] userFullName = {""};
+        mRef.child("users").child(anotherUserID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                userFullName[0] = dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("surname").getValue().toString();
+                titleText.setText(userFullName[0]);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +102,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     }
                 });
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)",
+                messageTime.setText(DateFormat.format("dd MMMM yyyy (HH:mm:ss)",
                         model.getMessageTime()));
             }
         };
