@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.rhymebyrhymeversion2.PoemProfileActivity;
 import com.example.rhymebyrhymeversion2.R;
 import com.example.rhymebyrhymeversion2.model.Poem;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,13 +63,17 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
         holder.likes.setText("" + poems.get(position).getLikes());
         holder.text.setText(Html.fromHtml(poems.get(position).getText()));
         holder.author.setText(poems.get(position).getAuthor());
-        Picasso.with(context).load(path).resize(200,200).centerCrop().into(holder.image);
+        if(path != null) {
+            Picasso.with(context).load(path).resize(200, 200).centerCrop().into(holder.image);
+        } else {
+            Picasso.with(context).load(R.drawable.profile).resize(200, 200).centerCrop().into(holder.image);
+        }
         mRef.child("poems").child(""+ poems.get(position).getId())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue()!=null
-                                && dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).child("like").getValue().equals("true")) {
+                        if(dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).getValue()!=null
+                                && (boolean)  dataSnapshot.child("likesAuthors").child(mAuth.getCurrentUser().getUid()).getValue()) {
                             holder.heart.setImageResource(R.drawable.blackheart);
                             poems.get(position).setLike(true);
 
@@ -85,6 +90,19 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
 
                     }
                 });
+
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, PoemProfileActivity.class);
+                intent.putExtra("path", path);
+                intent.putExtra("id", poems.get(position).getId());
+                intent.putExtra("author", holder.author.getText());
+                context.startActivity(intent);
+            }
+        });
 
 
     }
@@ -132,6 +150,9 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
     public void setList(LinkedList poems) {
         this.poems = poems;
     }
+
+
+
 
 
 

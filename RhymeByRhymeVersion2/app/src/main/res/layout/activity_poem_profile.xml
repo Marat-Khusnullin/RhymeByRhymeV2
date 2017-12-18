@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.rhymebyrhymeversion2.PoemProfileActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/poem_profile_profile"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/poem_profile_name"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/poem_profile_profile"
+        android:layout_toRightOf="@+id/poem_profile_profile"
+        android:layout_toEndOf="@+id/poem_profile_profile"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp" />
+
+    <TextView
+        android:id="@+id/poem_profile_date"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textSize="16sp"
+        android:layout_below="@+id/poem_profile_name"
+        android:layout_toRightOf="@+id/poem_profile_profile"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/poem_profile_title"
+        android:textColor="#222222"
+        android:layout_width="200dp"
+        android:maxLines="1"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/poem_profile_profile"
+        android:layout_alignLeft="@+id/poem_profile_profile"
+        android:layout_alignStart="@+id/poem_profile_profile" />
+
+
+
+
+
+    <TextView
+        android:id="@+id/poem_profile_text"
+        android:textSize="18dp"
+        android:textColor="#222222"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/poem_profile_title"
+        android:layout_alignLeft="@+id/poem_profile_title"
+        android:layout_alignStart="@+id/poem_profile_title"
+        android:layout_marginTop="21dp" />
+
+
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F4F4F4"
+        android:layout_alignParentBottom="true"
+        >
+
+    </View>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#FFFFFF">
+
+        <ImageView
+            android:id="@+id/poem_profile_heart"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/heart"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="18dp"
+            android:layout_marginStart="18dp" />
+
+
+        <TextView
+            android:id="@+id/poem_profile_likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/poem_profile_heart"
+            android:layout_toEndOf="@+id/poem_profile_heart"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

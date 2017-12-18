@@ -163,6 +163,8 @@ public class MainProfileActivity extends AppCompatActivity  {
                 Picasso.with(context)
                         .load(R.drawable.profile)
                         .resize(200,200).centerCrop().into(mProfileImage);
+                adapter = new PoemsListAdapter(poems, context);
+                setPoems();
             }
         });
 
@@ -188,19 +190,31 @@ public class MainProfileActivity extends AppCompatActivity  {
     private void setPoems() {
         poems = new LinkedList();
         DatabaseReference mRef;
-
+        FirebaseUser user = mAuth.getCurrentUser();
         mRef = FirebaseDatabase.getInstance().getReference();
-        mRef.child("users").child(mAuth.getCurrentUser().getUid()).child("poems").addListenerForSingleValueEvent(new ValueEventListener() {
+        mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                final String author = "" + dataSnapshot.child("name").getValue();
+                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                mRef.child("users").child(mAuth.getCurrentUser().getUid()).child("poems").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            Poem poem = postSnapshot.getValue(Poem.class);
+                            poem.setAuthor(author);
+                            poems.add(poem);
+                        }
+                        adapter.setList(poems);
+                        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+                        mRecyclerView.setAdapter(adapter);
 
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Poem poem = postSnapshot.getValue(Poem.class);
-                    poems.add(poem);
-                }
-                adapter.setList(poems);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-                mRecyclerView.setAdapter(adapter);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
             }
             @Override
@@ -210,9 +224,10 @@ public class MainProfileActivity extends AppCompatActivity  {
         });
 
 
-
-
     }
+
+
+
 
 
 }

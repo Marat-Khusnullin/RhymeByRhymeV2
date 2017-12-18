@@ -34,6 +34,7 @@ public class MenuActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, MessagesActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -42,6 +43,7 @@ public class MenuActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(MenuActivity.this, TopAuthorsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

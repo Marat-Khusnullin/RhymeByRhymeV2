@@ -36,7 +36,9 @@
             android:theme="@style/TranslucentGray" />
         <activity android:name=".MessagesActivity" />
         <activity android:name=".UserProfileActivity" />
-        <activity android:name=".TopAuthorsActivity"></activity>
+        <activity android:name=".TopAuthorsActivity" />
+        <activity android:name=".PoemProfileActivity" />
+        <activity android:name=".PoemByTagsActivity"></activity>
     </application>
 
 </manifest>
