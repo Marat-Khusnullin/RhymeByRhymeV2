@@ -1,5 +1,6 @@
 package com.example.rhymebyrhymeversion2;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,9 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.rhymebyrhymeversion2.model.ChatMessage;
@@ -37,11 +40,29 @@ public class MessagesActivity extends AppCompatActivity {
     FirebaseUser mUser;
     RecyclerView recyclerView;
     ArrayList<ChatMessage> chatMessageArrayList = new ArrayList<>();
+    Toolbar toolbar;
+    TextView titleText;
+    ImageView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
+
+        toolbar = (Toolbar) findViewById(R.id.messages_toolbar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.messages_action_bar);
+        ((Toolbar)getSupportActionBar().getCustomView().getParent()).setContentInsetsAbsolute(0,0);
+        titleText = (TextView) findViewById(R.id.messages_toolbar_text);
+        titleText.setText("Сообщения");
+        menu = (ImageView) findViewById(R.id.messages_toolbar_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MessagesActivity.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.list_of_messages_rv);
         mUser = FirebaseAuth.getInstance().getCurrentUser();
