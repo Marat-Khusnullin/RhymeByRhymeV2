@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MenuActivity extends Activity {
 
     TextView news;
@@ -53,6 +55,13 @@ public class MenuActivity extends Activity {
                 Intent intent = new Intent(MenuActivity.this, PoemByTagsActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
             }
         });
     }

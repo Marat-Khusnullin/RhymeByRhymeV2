@@ -135,6 +135,7 @@ public class NewUserInfoActivity extends AppCompatActivity implements View.OnCli
             mRef.child("users").child(currentUser.getUid()).updateChildren(childUpdates).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
+                    DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference();
                     Intent intent = new Intent(NewUserInfoActivity.this, MainProfileActivity.class);
                     startActivity(intent);
                     finish();

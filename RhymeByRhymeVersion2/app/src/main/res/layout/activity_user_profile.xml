@@ -82,7 +82,9 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:lines="2"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="1dp"
@@ -97,7 +99,9 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:lines="2"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
 
             <View
                 android:layout_width="1dp"
@@ -112,7 +116,9 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:lines="2"
-                android:maxLines="2" />
+                android:maxLines="2"
+                android:textColor="#000000"
+                android:textSize="20sp"/>
 
 
         </LinearLayout>

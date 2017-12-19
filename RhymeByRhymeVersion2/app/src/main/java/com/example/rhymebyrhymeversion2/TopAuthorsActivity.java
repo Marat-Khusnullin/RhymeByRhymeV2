@@ -1,5 +1,6 @@
 package com.example.rhymebyrhymeversion2;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,17 +38,24 @@ import java.util.Comparator;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TopAuthorsActivity extends AppCompatActivity {
-
+    private Toolbar toolbar;
     RecyclerView recyclerView;
     DatabaseReference mRef;
     StorageReference mStorageRef;
     FirebaseUser mUser;
+    private TextView nameAct;
     ArrayList<UserWithID> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_authors);
+        toolbar = (Toolbar) findViewById(R.id.messages_toolbar);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.messages_action_bar);
+        ((Toolbar)getSupportActionBar().getCustomView().getParent()).setContentInsetsAbsolute(0,0);
+        nameAct = (TextView) findViewById(R.id.messages_toolbar_text);
+        nameAct.setText("Топ авторов");
 
         recyclerView = (RecyclerView) findViewById(R.id.top_authors_rv);
         mUser = FirebaseAuth.getInstance().getCurrentUser();

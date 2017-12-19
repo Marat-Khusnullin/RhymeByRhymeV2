@@ -3,6 +3,7 @@ package com.example.rhymebyrhymeversion2;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -82,8 +83,17 @@ public class MainProfileActivity extends AppCompatActivity  {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mainLayout = (RelativeLayout) this.findViewById(R.id.main_layout);
 
-        /*mainLayout.setVisibility(RelativeLayout.GONE);
-        progressBar.setVisibility(ProgressBar.VISIBLE);*/
+        mainLayout.setVisibility(RelativeLayout.GONE);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
+        publications.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        subscribers.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        subsriptions.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        newPublication.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,14 +129,38 @@ public class MainProfileActivity extends AppCompatActivity  {
 
     private void setUserInfo() {
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         mRef.child("users").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                publications.setText(dataSnapshot.child("poemCount").getValue() + "\n публикации");
+                publications.setText("           " + dataSnapshot.child("poemCount").getValue() + "\n  публикации");
                 name.setText(""+ dataSnapshot.child("name").getValue());
                 surname = "" + dataSnapshot.child("surname").getValue();
                 country = "" + dataSnapshot.child("country").getValue();
+                DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference();
+                mRef2.child("subscribers").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        subscribers.setText("           " + dataSnapshot.getChildrenCount() + "\n  подписчики");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                mRef2.child("subscriptions").child(user.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        subsriptions.setText("           " + dataSnapshot.getChildrenCount() + "\n   подписки");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -144,8 +178,8 @@ public class MainProfileActivity extends AppCompatActivity  {
                 Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage, new Callback() {
                     @Override
                     public void onSuccess() {
-                        /*progressBar.setVisibility(ProgressBar.GONE);
-                        mainLayout.setVisibility(RelativeLayout.VISIBLE);*/
+                        progressBar.setVisibility(ProgressBar.GONE);
+                        mainLayout.setVisibility(RelativeLayout.VISIBLE);
 
                     }
 
@@ -172,7 +206,7 @@ public class MainProfileActivity extends AppCompatActivity  {
             @Override
             public void onSuccess(StorageMetadata storageMetadata) {
                 String path = storageMetadata.getDownloadUrl().toString();
-                Picasso.with(context).load(path).resize(200,200).centerCrop().into(mBackgroundImage);
+                Picasso.with(context).load(path).resize(500,500).centerCrop().into(mBackgroundImage);
 
             }
         }).addOnFailureListener(new OnFailureListener() {

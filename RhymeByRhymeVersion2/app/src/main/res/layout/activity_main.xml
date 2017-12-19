@@ -38,7 +38,8 @@
             android:background="#FFFFFF"
             android:textCursorDrawable = "@null"
             android:textColor="@android:color/darker_gray"
-            android:hint="Логин"
+            android:hint="Email"
+            android:inputType="textNoSuggestions"
             android:paddingLeft="10dp"
             android:textSize="25dp"
              />

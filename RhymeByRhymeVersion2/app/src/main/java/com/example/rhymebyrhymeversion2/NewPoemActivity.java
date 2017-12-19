@@ -2,6 +2,7 @@ package com.example.rhymebyrhymeversion2;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -54,6 +55,14 @@ public class NewPoemActivity extends AppCompatActivity {
         title = (EditText) findViewById(R.id.editTextTitle);
         poem = (EditText) findViewById(R.id.editTextPoem);
         tags = (EditText) findViewById(R.id.editTextTags);
+
+        title.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        poem.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+        tags.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-Light.ttf"));
+
 
 
         cancel.setOnClickListener(new View.OnClickListener() {

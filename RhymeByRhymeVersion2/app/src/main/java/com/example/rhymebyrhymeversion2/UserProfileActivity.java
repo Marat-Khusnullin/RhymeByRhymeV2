@@ -3,6 +3,7 @@ package com.example.rhymebyrhymeversion2;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -75,8 +76,15 @@ public class UserProfileActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_user);
         mainLayout = (RelativeLayout) this.findViewById(R.id.main_layout_user);
         userID = getIntent().getStringExtra("userID");
-        /*mainLayout.setVisibility(RelativeLayout.GONE);
-        progressBar.setVisibility(ProgressBar.VISIBLE);*/
+        mainLayout.setVisibility(RelativeLayout.GONE);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+
+        publications.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        subscribers.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
+        subsriptions.setTypeface(Typeface.createFromAsset(
+                getAssets(), "fonts/Roboto-BoldCondensed.ttf"));
 
         setCorrectSubscribeButton(subscribeToUser, userID, FirebaseAuth.getInstance().getCurrentUser().getUid());
 
@@ -113,6 +121,9 @@ public class UserProfileActivity extends AppCompatActivity {
                             mRef.child("subscribers").child(userID).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).removeValue();
                             subscribeToUser.setImageResource(R.drawable.ic_arrow_forward_black_24dp);
                         }
+
+
+
                     }
 
                     @Override
@@ -150,10 +161,34 @@ public class UserProfileActivity extends AppCompatActivity {
         mRef.child("users").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                publications.setText(dataSnapshot.child("poemCount").getValue() + "\n публикации");
+                publications.setText("           " + dataSnapshot.child("poemCount").getValue() + "\n  публикации");
                 name.setText(""+ dataSnapshot.child("name").getValue());
                 surname = "" + dataSnapshot.child("surname").getValue();
                 country = "" + dataSnapshot.child("country").getValue();
+                DatabaseReference mRef2 = FirebaseDatabase.getInstance().getReference();
+                mRef2.child("subscribers").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        subscribers.setText("           " + dataSnapshot.getChildrenCount() + "\n  подписчики");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                mRef2.child("subscriptions").child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        subsriptions.setText("           " + dataSnapshot.getChildrenCount() + "\n   подписки");
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -168,8 +203,8 @@ public class UserProfileActivity extends AppCompatActivity {
                 Picasso.with(context).load(path).resize(200,200).centerCrop().into(mProfileImage, new Callback() {
                     @Override
                     public void onSuccess() {
-                        /*progressBar.setVisibility(ProgressBar.GONE);
-                        mainLayout.setVisibility(RelativeLayout.VISIBLE);*/
+                        progressBar.setVisibility(ProgressBar.GONE);
+                        mainLayout.setVisibility(RelativeLayout.VISIBLE);
                     }
 
                     @Override
