@@ -46,5 +46,14 @@ public class MenuActivity extends Activity {
                 finish();
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MenuActivity.this, PoemByTagsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

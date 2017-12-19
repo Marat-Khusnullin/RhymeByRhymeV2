@@ -3,6 +3,7 @@ package com.example.rhymebyrhymeversion2.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -14,12 +15,18 @@ import android.widget.TextView;
 import com.example.rhymebyrhymeversion2.PoemProfileActivity;
 import com.example.rhymebyrhymeversion2.R;
 import com.example.rhymebyrhymeversion2.model.Poem;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.LinkedList;
@@ -67,6 +74,26 @@ public class PoemsListAdapter extends RecyclerView.Adapter<PoemsListAdapter.MyLi
             Picasso.with(context).load(path).resize(200, 200).centerCrop().into(holder.image);
         } else {
             Picasso.with(context).load(R.drawable.profile).resize(200, 200).centerCrop().into(holder.image);
+        }
+        if(path.equals("tag")) {
+            StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+            mStorageRef.child("images/" + poems.get(position).getuId()).getMetadata().addOnSuccessListener(new OnSuccessListener<StorageMetadata>() {
+                @Override
+                public void onSuccess(StorageMetadata storageMetadata) {
+                    String path = storageMetadata.getDownloadUrl().toString();
+
+                    Picasso.with(context).load(path).resize(200,200).centerCrop().into(holder.image);
+
+
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Picasso.with(context)
+                            .load(R.drawable.profile)
+                            .resize(200,200).centerCrop().into(holder.image);
+                }
+            });
         }
         mRef.child("poems").child(""+ poems.get(position).getId())
                 .addValueEventListener(new ValueEventListener() {
