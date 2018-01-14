@@ -197,6 +197,8 @@ public class MainProfileActivity extends AppCompatActivity  {
                 Picasso.with(context)
                         .load(R.drawable.profile)
                         .resize(200,200).centerCrop().into(mProfileImage);
+                progressBar.setVisibility(ProgressBar.GONE);
+                mainLayout.setVisibility(RelativeLayout.VISIBLE);
                 adapter = new PoemsListAdapter(poems, context);
                 setPoems();
             }
